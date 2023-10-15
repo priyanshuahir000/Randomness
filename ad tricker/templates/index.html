@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open Multiple Websites</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .instruction {
+            font-size: 14px;
+            margin-top: 20px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click the button to trick google ads:</h1>
+    <button id="openAllWebsites">Trick Now!</button>
+
+    <div class="instruction">
+        <p><strong>Instructions:</strong> If pop-ups are blocked, please allow them in your browser settings to open the websites in new tabs/windows.</p>
+    </div>
+
+    <script>
+        document.getElementById('openAllWebsites').addEventListener('click', function () {
+            var websites = {{ websites|tojson|safe }};
+            var delay = 1000; // 1000ms (1 second) delay
+
+            websites.forEach(function (site, index) {
+                setTimeout(function () {
+                    window.open(site.url, '_blank');
+                }, index * delay);
+            });
+        });
+    </script>
+</body>
+</html>
